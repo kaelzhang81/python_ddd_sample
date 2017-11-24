@@ -11,7 +11,7 @@ class DomainEvent:
     """domain event class
     """
         
-    metaclass=abc.ABCMeta
+    __metaclass__ = ABCMeta
 
     def __init__(self, timestamp=_now, **kwargs):
         self.__dict__['timestamp'] = monotonic_utc_now() if timestamp is _now else timestamp
