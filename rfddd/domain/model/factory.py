@@ -7,7 +7,7 @@ class Factory(object):
     """Factory abstract class
     """
 
-    metaclass = ABCMeta
+    __metaclass__ = ABCMeta
 
     @abstractmethod
     def create(self):
