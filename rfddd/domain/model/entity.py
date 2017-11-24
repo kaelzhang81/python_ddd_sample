@@ -7,9 +7,7 @@ from itertools import count
 class Entity(object):
     """the entity meta class
     """
-
-    metaclass = ABCMeta
-
+    __metaclass__ = ABCMeta
     _instance_id_generator = count()
 
     def __init__(self, eid):
