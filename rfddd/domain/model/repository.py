@@ -8,7 +8,7 @@ class Repository(object):
     """
 
 
-    metaclass = ABCMeta
+    __metaclass__ = ABCMeta
 
     @abstractmethod
     def add(self, eid, obj):
