@@ -13,7 +13,7 @@ MIN_NUMBER_ARGS = 1
 
 
 class ValueObject(object):
-    metaclass=abc.ABCMeta
+    __metaclass__ = ABCMeta
 
     def __new__(cls, *args, **kwargs):
         self = super(ValueObject, cls).__new__(cls)
