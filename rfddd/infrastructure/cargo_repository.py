@@ -1,6 +1,6 @@
 # coding=utf-8
 
-from rfddd.domain.model import Repository
+from domain.model.repository import Repository
 
 class CargoRepository:
     def __init__(self):
@@ -12,7 +12,7 @@ class CargoRepository:
         self._repo[id] = obj
         return True
 
-    def save(self, id):
+    def save(self, id, obj):
         if not self._has_key(id):
             return False
         self._repo[id] = obj
@@ -31,5 +31,6 @@ class CargoRepository:
 Repository.register(CargoRepository)
 
 if __name__ == '__main__':
+
     print 'Subclass:', issubclass(CargoRepository, Repository)
-    print 'Instance:', isinstance(CargoRepository, Repository)
+    print 'Instance:', isinstance(CargoRepository(), Repository)
