@@ -3,7 +3,7 @@
 
 import abc
 import itertools
-from utility.time import monotonic_utc_now
+import time
 
 _now = object()
 
@@ -11,7 +11,7 @@ class DomainEvent:
     """domain event class
     """
         
-    __metaclass__ = ABCMeta
+    __metaclass__=abc.ABCMeta
 
     def __init__(self, timestamp=_now, **kwargs):
         self.__dict__['timestamp'] = monotonic_utc_now() if timestamp is _now else timestamp
