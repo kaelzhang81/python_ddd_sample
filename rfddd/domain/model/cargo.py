@@ -1,7 +1,9 @@
 # coding=utf-8
 """the implement of cargo"""
 
-import entity
+import abc
+from .entity import Entity
+from .delivery import Delivery
 
 class Cargo(object):
     """the cargo class
@@ -10,19 +12,24 @@ class Cargo(object):
     def __init__(self, id, delivery):
         self._id = id
         self._instance_id = next(Entity._instance_id_generator)
-        slef._delivery = delivery
+        self._delivery = delivery
 
-    def delay(days):
+    def delay(self, days):
         """delay logic"""
-        after = self._delivery.AfterDays
+        after = self._delivery.after_days
         self._delivery = Delivery(after + days)
 
+    @property
     def after_days(self):
         """get after days of delivery"""
-        return self._delivery.AfterDays
+        return self._delivery.after_days
+
+    @property
+    def id(self):
+        return self._id
 
 Entity.register(Cargo)
 
 if __name__ == '__main__':
-    print 'Subclass:', issubclass(Cargo, Entity)
-    print 'Instance:', isinstance(Cargo, Entity)
+    print('Subclass:', issubclass(Cargo, Entity))
+    print('Instance:', isinstance(Cargo(1, None), Entity))
