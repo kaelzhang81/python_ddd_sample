@@ -3,7 +3,7 @@
 
 import abc
 import itertools
-import time
+from .time import *
 
 _now = object()
 
