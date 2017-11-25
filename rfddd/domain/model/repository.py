@@ -1,13 +1,12 @@
 # coding=utf-8
-"""the implement of repository"""
+"""the interface of repository"""
 
 from abc import ABCMeta, abstractmethod
+
 
 class Repository(object):
     """Repository abstract class
     """
-
-
     __metaclass__ = ABCMeta
 
     @abstractmethod
