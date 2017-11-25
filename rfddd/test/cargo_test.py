@@ -1,49 +1,41 @@
 # coding=utf-8
-
 import unittest
 
 from application.service.cargo_api import CargoApi
+from domain.service.cargo_service import CargoService
 from application.service.create_cargo_msg import CreateCargoMsg
+from stub_cargo_provider import StubCargoProvider
+from stub_cargo_repository import StubCargoRepository
 
-def create_api():
-    # ContainerBuilder builder;
-    # builder.registerType< CargoRepository >().singleInstance();
-    # builder.registerInstance(provider).as<CargoProvider>();
-    # builder.registerType< CargoService >().singleInstance();
-    # builder.registerType<api::Api>().singleInstance();
-    #
-    # auto container = builder.build();
-    #
-    # std::shared_ptr<api::Api> api = container->resolve<api::Api>();
-    #
-    # return api.get();
-    return CargoApi()
-
-def create_cargo(msg):
-    api = create_api();
-    api.create_cargo(msg);
 
 class CargoTestCase(unittest.TestCase):
-    def test_create_cargo(self):
-        msg = CreateCargoMsg(1, 5);
-        # createCargo(msg);
-        # EXPECT_EQ(msg->Id, provider->cargo_id);
-        # EXPECT_EQ(msg->AfterDays, provider->after_days);
 
-        self.assertTrue(True)
+    def setUp(self):
+        self._cargo_id = 1
+        self._after_days = 10
+        self._provider = StubCargoProvider()
+
+    @staticmethod
+    def create_api(provider):
+        repository = StubCargoRepository()
+        service = CargoService(repository, provider)
+        return CargoApi(service)
+
+    def test_create_cargo(self):
+        msg = CreateCargoMsg(1, 10)
+        api = CargoTestCase.create_api(self._provider)
+        api.create_cargo(msg)
+        self.assertEqual(msg._cargo_id, self._provider.cargo_id)
+        self.assertEqual(msg.after_days,  self._provider.after_days)
 
     def test_delay_cargo(self):
-        # api = createApi();
-        # api::CreateCargoMsg * msg = api::CreateCargoMsg();
-        # msg->Id = ID;
-        # msg->AfterDays = AFTER_DAYS;
-        # api->CreateCargo(msg);
-        # api->Delay(ID, 2);
-        # EXPECT_EQ(ID, provider->cargo_id);
-        # EXPECT_EQ(12, provider->after_days);
-        self.assertEqual(True, True)
+        msg = CreateCargoMsg(self._cargo_id, self._after_days)
+        api = CargoTestCase.create_api(self._provider)
+        api.create_cargo(msg)
+        api.delay(self._cargo_id, 2)
+        self.assertEqual(self._cargo_id, self._provider.cargo_id)
+        self.assertEqual(12,  self._provider.after_days)
 
 
 if __name__ == '__main__':
     unittest.main()
-
