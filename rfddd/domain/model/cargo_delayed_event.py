@@ -13,5 +13,5 @@ class CargoDelayedEvent(object):
 DomainEvent.register(CargoDelayedEvent)
 
 if __name__ == '__main__':
-    print 'Subclass:', issubclass(CargoDelayedEvent, DomainEvent)
-    print 'Instance:', isinstance(CargoDelayedEvent(1), DomainEvent)
+    print('Subclass:', issubclass(CargoDelayedEvent, DomainEvent))
+    print('Instance:', isinstance(CargoDelayedEvent(1), DomainEvent))
