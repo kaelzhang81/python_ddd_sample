@@ -2,6 +2,7 @@
 
 from domain.model.repository import Repository
 
+
 class CargoRepository:
     def __init__(self):
         self._repo = {}
@@ -32,5 +33,5 @@ Repository.register(CargoRepository)
 
 if __name__ == '__main__':
 
-    print 'Subclass:', issubclass(CargoRepository, Repository)
-    print 'Instance:', isinstance(CargoRepository(), Repository)
+    print('Subclass:', issubclass(CargoRepository, Repository))
+    print('Instance:', isinstance(CargoRepository(), Repository))
