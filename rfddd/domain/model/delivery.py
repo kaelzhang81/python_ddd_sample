@@ -1,7 +1,7 @@
 # coding=utf-8
 """the sample of value object"""
 
-import value_object
+from .value_object import ValueObject
 
 class Delivery(object):
     """delivery class
@@ -19,5 +19,5 @@ class Delivery(object):
 ValueObject.register(Delivery)
 
 if __name__ == '__main__':
-    print 'Subclass:', issubclass(Delivery, ValueObject)
-    print 'Instance:', isinstance(Delivery, ValueObject)
+    print('Subclass:', issubclass(Delivery, ValueObject))
+    print('Instance:', isinstance(Delivery(5), ValueObject))
