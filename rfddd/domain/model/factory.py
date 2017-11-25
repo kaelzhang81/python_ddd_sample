@@ -3,6 +3,7 @@
 
 from abc import ABCMeta, abstractmethod
 
+
 class Factory(object):
     """Factory abstract class
     """
@@ -10,6 +11,6 @@ class Factory(object):
     __metaclass__ = ABCMeta
 
     @abstractmethod
-    def create(self):
+    def create(self, *args):
         """the create method of factory"""
         raise NotImplementedError
