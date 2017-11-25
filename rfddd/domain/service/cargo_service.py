@@ -2,7 +2,7 @@
 """the implement of entity"""
 
 
-from domain.model import cargo_factory
+from domain.model.cargo_factory import CargoFactory
 
 class CargoService(object):
     """cargo service class
@@ -14,14 +14,14 @@ class CargoService(object):
 
     def create(self, cargo_id, days):
         """create cargo"""
-        cargo = CargoFactory(cargo_id, days)
-        self._cargo_repo.save(cargo);
-        self._cargo_provider.confirm(cargo);
+        cargo = CargoFactory().create(cargo_id, days)
+        self._cargo_repo.add(cargo.id, cargo)
+        self._cargo_provider.confirm(cargo)
 
     def delay(self, id, days):
         """cargo delay"""
-        cargo = self._cargo_repo.find_by_id(id);
+        cargo = self._cargo_repo.find_by_id(id)
         if cargo is not None:
-            cargo.Delay(days);
-            self._cargo_repo.save(cargo);
-            self._cargo_provider.confirm(cargo);
+            cargo.delay(days)
+            self._cargo_repo.save(cargo.id, cargo)
+            self._cargo_provider.confirm(cargo)
