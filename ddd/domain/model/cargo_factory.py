@@ -2,7 +2,7 @@
 """the implement of factory"""
 
 import abc
-from .factory import Factory
+from .base.factory import Factory
 from .delivery import Delivery
 from .cargo import Cargo
 

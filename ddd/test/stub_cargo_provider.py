@@ -1,6 +1,6 @@
 # coding=utf-8
 
-from domain.model.provider import Provider
+from domain.model.base.provider import Provider
 
 
 class StubCargoProvider(object):

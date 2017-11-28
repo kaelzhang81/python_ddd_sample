@@ -1,7 +1,7 @@
 # coding=utf-8
 """the sample of domain event"""
 
-from .domain_event import DomainEvent
+from .base.domain_event import DomainEvent
 
 class CargoDelayedEvent(object):
     """cargo delayed domain event class

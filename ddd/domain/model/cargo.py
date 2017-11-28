@@ -2,7 +2,7 @@
 """the implement of cargo"""
 
 import abc
-from .entity import Entity
+from .base.entity import Entity
 from .delivery import Delivery
 
 class Cargo(object):
