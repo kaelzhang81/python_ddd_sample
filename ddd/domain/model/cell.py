@@ -53,4 +53,4 @@ AggregateRoot.register(Cell)
 
 if __name__ == '__main__':
     print('Subclass:', issubclass(Cell, AggregateRoot))
-    print('Instance:', isinstance(Cell(1, None), AggregateRoot))
+    print('Instance:', isinstance(Cell(1, [], 0, 0), AggregateRoot))
