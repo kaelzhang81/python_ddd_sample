@@ -40,10 +40,10 @@ class Cp(object):
             hoc = hocRepository().find(hoc_alias)
             return hoc.get_port_value(hoc_channel)
 
-    def move_to(self):
+    def move_to(self, signal_value):
         self._change_hoc_value_max()
         hoc_info_list = self._get_cp_link_ue_hoc()
-        self._change_hoc_value(hoc_info_list, 0)
+        self._change_hoc_value(hoc_info_list, signal_value)
 
     def _get_cp_link_ue_hoc(self):
         return []
