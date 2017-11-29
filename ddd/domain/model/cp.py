@@ -1,31 +1,57 @@
 # coding=utf-8
-from testlib.domain.model.cell import ECellEquipmentFunction
+
+from .base.entity import Entity
+
+class hocRepository:
+    def find(self, id):
+        return Hoc()
+
+class Hoc:
+    def get_port_value(self, i):
+        return 1
 
 
 class Cp(object):
 
-    def __init__(self, enodeb, bbBoard, cpId, rruInfoList, freqDl, freqInd):
-        self._cpId = None
-        self.freqBandInd = None
-        self._feqDl = freqDl
-        self._freqInd = freqInd
-        self._mocObject = ECellEquipmentFunction.create_mocobject(
-            enodeb, bbBoard, cpId, rruInfoList, 
-        )
+    def __init__(self, cp_id, freq_band_ind, freq_dl, freq_ind):
+        self._cp_id = cp_id
+        self._freq_band_ind = freq_band_ind
+        self._freq_dl = freq_dl
+        self._freq_ind = freq_ind
 
-    def __getattr__(self, name):
-        return getattr(self._mocObject, name)
+    def get_freq_dl(self):
+        return self._freq_dl
 
-    def get_attrs(self):
-        _attrs = self._mocObject._create_attrs()
-        return _attrs
- 
-    @property
-    def cpid(self):
-        return self._cpId
+    def query_freq_ind(self):
+        return self._freq_ind
 
-    def get_freqDl(self):
-        return self._feqDl
+    def _change_hoc_value_max(self):
+        pass
 
-    def query_rru_freqband_Ind(self, freqDl, cellBand):
-        return self._freqInd
+    def _change_hoc_value(self, l, v):
+        pass
+
+    def get_hoc_port_value(self):
+        hoc_info_list = self._get_cp_link_ue_hoc()
+
+        for hocInfo in hoc_info_list:
+            hoc_alias = hocInfo[0]
+            hoc_channel = hocInfo[1]
+            hoc = hocRepository().find(hoc_alias)
+            return hoc.get_port_value(hoc_channel)
+
+    def move_to(self):
+        self._change_hoc_value_max()
+        hoc_info_list = self._get_cp_link_ue_hoc()
+        self._change_hoc_value(hoc_info_list, 0)
+
+    def _get_cp_link_ue_hoc(self):
+        return []
+
+
+
+Entity.register(Cp)
+
+if __name__ == '__main__':
+    print('Subclass:', issubclass(Cp, Entity))
+    print('Instance:', isinstance(Cp(1, None), Entity))
