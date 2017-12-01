@@ -3,10 +3,11 @@
 import abc
 from .base.value_object import ValueObject
 
+
 class Iperf(object):
     def __init__(self, dest_ip, dest_port, report_interval=1,
                  duration=7200, bandwidth="50M",
-                 total_size=2000000, src_ip=None)
+                 total_size=2000000, src_ip=None):
         self.dest_ip = dest_ip
         self.dest_port = dest_port
         self.report_interval = report_interval
