@@ -1,13 +1,19 @@
-class EnodebFactory(Singleton):
-    enodebList = []
+import Singleton
+import Enodeb
+import Factory
 
-    def create(self, name):
-        print self
+
+@Singleton
+class EnodebFactory(object):
+
+    @staticmethod
+    def create(self, name, rrus, base_band_boards, fs_boards):
         enodeb = Enodeb(name)
-        EnodebFactory.enodebList.append(enodeb)
+        enodeb.add_device(rrus)
+        enodeb.add_device(base_band_boards)
+        enodeb.add_device(fs_boards)
         return enodeb
-    
-    def get(self, name):
-        print self
-        return filter(lambda enodeb: name == enodeb.get_name(), EnodebFactory.enodebList)[0]
-        
+
+
+Factory.register(EnodebFactory)
+
