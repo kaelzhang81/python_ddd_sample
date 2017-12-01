@@ -14,23 +14,26 @@ from testlib.infrastructure.utility.moctree.model.MoAgent import MoAgent
 from testlib.domain.model.cell.BandwidthRestrain import BandwidthRestrain
 import FunctionPolicy
 import SwitchPolicy
+import LoadManagement
 
 from .base.aggregate_root import AggregateRoot
 
 
 class Cell(object):
 
-    def __init__(self, cell_alias, cp_list, band_width, freq, dm):
-        self._signal_regulator = SignalRegulator()
+    def __init__(self, cell_alias, pci, cp_list, band_width, freq, dm):
         self._kpi_task = None
-        self.function_policy = FunctionPolicy()
-        self.switch_policy = SwitchPolicy()
         self._id = cell_alias
-        self._bandwidth_restrain = BandwidthRestrain()
         self._cp_list = cp_list
+        self._pci = pci
         self._band_width = band_width
         self._freq = freq
         self._dm = dm
+        self.switch_policy = SwitchPolicy()
+        self.function_policy = FunctionPolicy()
+        self._bandwidth_restrain = BandwidthRestrain(band_width)
+        self._signal_regulator = SignalRegulator(cp_list)
+        self._load_management = LoadManagement(pci, cp_list, band_width, freq)
 
     def role(self, className):
         return Role.convert(self, className)
