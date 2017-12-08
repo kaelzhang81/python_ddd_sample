@@ -13,7 +13,13 @@ class Entity(object):
     def __init__(self, eid):
         self._eid = eid
         self._instance_id = next(Entity._instance_id_generator)
+ 
+    def __eq__(self, other):
+        return self._id == other.id
 
+    def __ne__(self, other):
+        return not self == other
+ 
     @property
     def instance_id(self):
         """the instance id of entity"""
