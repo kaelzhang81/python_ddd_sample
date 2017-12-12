@@ -4,7 +4,6 @@ import unittest
 from application.service.cargo_api import CargoApi
 from domain.service.cargo_service import CargoService
 from application.service.create_cargo_msg import CreateCargoMsg
-from domain.model.base.exceptions import CannotBeChangeException
 from stub_cargo_provider import StubCargoProvider
 from stub_cargo_repository import StubCargoRepository
 

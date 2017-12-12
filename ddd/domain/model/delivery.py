@@ -1,7 +1,9 @@
 # coding=utf-8
 """the sample of value object"""
 
+import abc
 from .base.value_object import ValueObject
+
 
 class Delivery(object):
     """delivery class
