@@ -33,12 +33,11 @@ class Cargo(object):
         """get after days of delivery"""
         return self._delivery
 
-import Cp
 
-Entity.register(Cp)
+Entity.register(Cargo)
 
 if __name__ == '__main__':
-    print('Subclass:', issubclass(Cp, Entity))
-    print('Instance:', isinstance(Cp(1, 100, 25, 10), Entity))
+    print('Subclass:', issubclass(Cargo, Entity))
+    print('Instance:', isinstance(Cargo(1, 10), Entity))
 
 
