@@ -6,7 +6,7 @@ from domain.model.base.provider import Provider
 class CargoProvider(object):
 
     def confirm(self, cargo):
-        print('confirm cargo')
+        pass
 
 Provider.register(CargoProvider)
 

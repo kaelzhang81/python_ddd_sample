@@ -28,8 +28,17 @@ class Cargo(object):
     def id(self):
         return self._id
 
-Entity.register(Cargo)
+    @property
+    def delivery(self):
+        """get after days of delivery"""
+        return self._delivery
+
+import Cp
+
+Entity.register(Cp)
 
 if __name__ == '__main__':
-    print('Subclass:', issubclass(Cargo, Entity))
-    print('Instance:', isinstance(Cargo(1, None), Entity))
+    print('Subclass:', issubclass(Cp, Entity))
+    print('Instance:', isinstance(Cp(1, 100, 25, 10), Entity))
+
+

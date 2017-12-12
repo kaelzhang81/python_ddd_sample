@@ -4,6 +4,7 @@ import unittest
 from application.service.cargo_api import CargoApi
 from domain.service.cargo_service import CargoService
 from application.service.create_cargo_msg import CreateCargoMsg
+from domain.model.base.exceptions import CannotBeChangeException
 from stub_cargo_provider import StubCargoProvider
 from stub_cargo_repository import StubCargoRepository
 
@@ -36,6 +37,21 @@ class CargoTestCase(unittest.TestCase):
         self.assertEqual(self._cargo_id, self._provider.cargo_id)
         self.assertEqual(12,  self._provider.after_days)
 
+    def test_change_entity_id_raise_exception(self):
+        repository = StubCargoRepository()
+        service = CargoService(repository, self._provider)
+        service.create(1, 10)
+        cargo = repository.find_by_id(1)
+        with self.assertRaises(AttributeError):
+            cargo.id = 2
+
+    def test_change_value_object_raise_exception(self):
+        repository = StubCargoRepository()
+        service = CargoService(repository, self._provider)
+        service.create(1, 10)
+        cargo = repository.find_by_id(1)
+        with self.assertRaises(AttributeError):
+            cargo.id = 2
 
 if __name__ == '__main__':
     unittest.main()

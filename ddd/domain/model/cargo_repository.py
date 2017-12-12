@@ -3,31 +3,24 @@
 from domain.model.base.repository import Repository
 
 
-class CargoRepository:
+class CargoRepository(object):
     def __init__(self):
-        self._repo = {}
+        pass
 
     def add(self, id, obj):
-        if self._has_key(id):
-            return False
-        self._repo[id] = obj
-        return True
+        pass
 
     def save(self, id, obj):
-        if not self._has_key(id):
-            return False
-        self._repo[id] = obj
-        return True
+        pass
 
     def delete(self, id):
-        if self._has_key(self, id):
-            del self._repo[id]
+        pass
 
     def find_by_id(self, id):
-        return self._repo.get(id)
+        pass
 
     def _has_key(self, id):
-        return self._repo.has_key(id)
+        pass
 
 Repository.register(CargoRepository)
 
