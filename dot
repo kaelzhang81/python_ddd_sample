@@ -1,0 +1,55 @@
+digraph G {
+    rankdir="LR";
+    node[shape="point", width=0.1, height=0.1];
+    edge[arrowhead="none", style="dashed"]
+
+    {
+        rank="same";
+        edge[style="solided"];
+        BPF[shape="box"];
+        BPF -> step00 -> step01 -> step02 -> step03 -> step04 -> step05 -> step06 -> step07 -> step08 -> step09 -> step0a -> step0b -> step0c;
+    }
+
+    {
+        rank="same";
+        edge[style="solided"];
+        UC[shape="box"];
+        UC -> step10 -> step11 -> step12 -> step13 -> step14 -> step15 -> step16 -> step17 -> step18 -> step19 -> step1a -> step1b -> step1c;
+    }
+
+    {
+        rank="same";
+        edge[style="solided"];
+        GAS[shape="box"];
+        GAS -> step20 -> step21 -> step22 -> step23 -> step24 -> step25 -> step26 -> step27 -> step28 -> step29 -> step2a -> step2b -> step2c;
+    }
+
+    {
+        rank="same";
+        edge[style="solided"];
+        HRRM[shape="box"];
+        HRRM -> step30 -> step31 -> step32 -> step33 -> step34 -> step35 -> step36 -> step37 -> step38 -> step39 -> step3a -> step3b -> step3c;
+    }
+
+    {
+        rank="same";
+        edge[style="solided"];
+        STS[shape="box"];
+        STS -> step40 -> step41 -> step42 -> step43 -> step44 -> step45 -> step46 -> step47 -> step48 -> step49 -> step4a -> step4b -> step4c;
+    }
+
+
+    step00 -> step10 [label="RRCConnectionRequest(BC_CCCH,1,scene.gnbId.cellId.crnti)", arrowhead="normal"];
+    step11 -> step21 [label="GidAllocateRequest(UCS_GAS,1,msId.pno)", arrowhead="normal"];
+    step22 -> step12 [label="GidAllocateResponse(UCS_GAS,2,msId.pno)", arrowhead="normal"];
+    step13 -> step33 [label="SrbAdmitRequest(UCS_CMS_UE,1,gnbId.cellId.cpfueid)", arrowhead="normal"];
+    step34 -> step14 [label="SrbAdmitResponse(UCS_CMS_UE,2,gnbId.cellId.cpfueid)", arrowhead="normal"];
+    step15 -> step45 [label="Srb1ConfigRequest(UCS_STS_SRB,1,cpfueid)", arrowhead="normal"];
+    step16 -> step06 [label="UeContextConfigRequest(BC_UE,1,gnbId.cellId.cpfueid)", arrowhead="normal"];
+    step47 -> step17 [label="SrbAdmitResponse(UCS_STS_SRB,2,cpfueid)", arrowhead="normal"];
+    step08 -> step18 [label="UeContextConfigResponse(BC_UE,2,gnbId.cellId.cpfueid)", arrowhead="normal"];
+    step19 -> step09 [label="RRCConnectionSetUp(BC_CCCH,2,scene.gnbId.cellId.crnti)", arrowhead="normal"];
+    step0a -> step4a [label="RRCConnectionSetUpComplete(BC_DCCH,,cpfUeId.ppsId)", arrowhead="normal"];
+    step4b -> step1b [label="RRCConnectionSetUpComplete(UCS_CMS_UE,2,gnbId.cellId.cpfueid)", arrowhead="normal"];
+    step1c -> step3c [label="SrbAdmitAcknowledge(UCS_CMS_UE,3,gnbId.cellId.cpfueid)", arrowhead="normal"];
+}
